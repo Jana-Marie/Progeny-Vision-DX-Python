@@ -13,11 +13,11 @@ outfile = open(sys.argv[1], 'w')
 #print_lock = threading.Lock()
 
 #isFinished = 0;
+data = ""
 
 # thread fuction
 def receive(recv):
     c, addr = recv.accept()
-    data = ""
     while True:
         # data received from client
         #print("Received:")
@@ -27,7 +27,7 @@ def receive(recv):
         if len(_data) == 0:
             outLen = len(data)-4139360
             print(str(len(data)) + " Byte Received")
-            outfile.write(data[outLen:])
+            outfile.write(data)
             outfile.close()
             print("exit")
             c.shutdown(socket.SHUT_WR)
@@ -47,7 +47,7 @@ def receive(recv):
 
 
 
-host = "192.168.68.66"
+host = "192.168.68.64"
 port = 104                   # The same port as used by the server
 cmd = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 cmd.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -101,6 +101,8 @@ def exit_gracefully(signum, frame):
     cmd2.close()
     print("bye.")
 
+    outfile.write(data)
+    outfile.close()
     signal.signal(signal.SIGINT, original_sigint)
     sys.exit(1)
 
