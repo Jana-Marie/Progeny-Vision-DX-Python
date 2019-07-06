@@ -20,7 +20,6 @@ data = ""
 # thread fuction
 def receive(recv):
     c, addr = recv.accept()
-    data = ""
     while True:
         # data received from client
         #print("Received:")
