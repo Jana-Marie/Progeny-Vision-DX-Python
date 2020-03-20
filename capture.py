@@ -1,7 +1,5 @@
 #!/bin/python2.7
 import socket
-# import thread module
-#from thread import *
 from threading import Thread
 import threading
 import signal
@@ -12,9 +10,6 @@ outfile = open(sys.argv[1], 'w')
 hostIP = b"192.168.68.1"
 sensorIP = "192.168.68.64"
 
-#print_lock = threading.Lock()
-
-#isFinished = 0;
 data = ""
 
 # thread fuction
