@@ -114,7 +114,7 @@ def run_program():
     #data = s.recv(1024)
 
     #print('Received', repr(data))
-    def exit_gracefully(signum, frame):
+def exit_gracefully(signum, frame):
     # restore the original signal handler as otherwise evil things will happen
     # in raw_input when CTRL+C is pressed, and our signal handler is not re-entrant
     global cmd
@@ -146,7 +146,7 @@ print ("\nReading: "+sys.argv[1])
 img = np.fromfile(sys.argv[1], dtype=">u2")
 img = np.reshape(img, (sizeY, sizeX))
 #image = image / (2  6)
-img = (2  16) - img
+img = (2 ** 16) - img
 img = img -1
 lx, ly = img.shape
 img = img[100:lx , 13 : ly ]
